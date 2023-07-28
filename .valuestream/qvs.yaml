@@ -1,0 +1,26 @@
+params:
+  - name: appName
+    type: string
+modules:
+  - name: github.com/qmonus/official-cloud-native-adapters-internal
+    revision: IACS-369_cicd_adapter_parameter_rename
+designPatterns:
+  - pattern: qmonus.net/adapter/official/pipeline/deploy:simpleDeployByPulumiYaml
+    pipelineParams:
+      useCred:
+        kubernetes: true
+        azure: true
+  - pattern: qmonus.net/adapter/official/pulumi/azure/sample:azureApiBackendApplicationAdapterForAzureResources
+    params:
+      appName: $(params.appName)
+      azureLocationName: $(params.azureLocationName)
+      azureDnsZoneName: $(params.azureDnsZoneName)
+      azureKeyVaultDbPasswordSecretName: $(params.azureKeyVaultDbPasswordSecretName)
+      azureKeyVaultDbUserSecretName: $(params.azureKeyVaultDbUserSecretName)
+      azureTenantId: $(params.azureTenantId)
+      mysqlCreateUserName: $(params.mysqlCreateUserName)
+      azureKeyVaultKeyContainerName: $(params.azureKeyVaultKeyContainerName)
+      mysqlCreateDbName: $(params.mysqlCreateDbName)
+      azureSubscriptionId: $(params.azureSubscriptionId)
+      azureStaticIpAddress: $(params.azureStaticIpAddress)
+      azureResourceGroupName: $(params.azureResourceGroupName)
