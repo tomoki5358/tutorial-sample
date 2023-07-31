@@ -3,7 +3,7 @@ params:
     type: string
 modules:
   - name: github.com/qmonus/official-cloud-native-adapters-internal
-    revision: IACS-369_cicd_adapter_parameter_rename
+    revision: main
 designPatterns:
   - pattern: qmonus.net/adapter/official/pipeline/deploy:simpleDeployByPulumiYaml
     pipelineParams:
