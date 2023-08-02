@@ -51,7 +51,7 @@ params:
     type: string
 modules:
   - name: github.com/qmonus/official-cloud-native-adapters-internal
-    revision: c6b220c0fb5851b7da091b973c5e4399b34c15f8
+    revision: a59f3eae6c5b1db4fee273f2b5ff35130427b153
 designPatterns:
   - pattern: qmonus.net/adapter/official/pipeline/build:buildkitAzure
   - pattern: qmonus.net/adapter/official/pipeline/deploy:simpleDeployByPulumiYaml
