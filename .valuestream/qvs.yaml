@@ -1,0 +1,96 @@
+params:
+  - name: appName
+    type: string
+  - name: azureResourceGroupName
+    type: string
+  - name: azureDnsZoneName
+    type: string
+  - name: azureDnsARecordName
+    type: string
+  - name: azureStaticIpAddress
+    type: string
+  - name: mysqlCreateUserName
+    type: string
+  - name: mysqlCreateDbName
+    type: string
+  - name: azureKeyVaultKeyContainerName
+    type: string
+  - name: azureKeyVaultDbUserSecretName
+    type: string
+  - name: azureKeyVaultDbPasswordSecretName
+    type: string
+  - name: azureLocationName
+    type: string
+  - name: azureTenantId
+    type: string
+  - name: azureSubscriptionId
+    type: string
+  - name: k8sNamespace
+    type: string
+  - name: port
+    type: string
+  - name: imageName
+    type: string
+  - name: dbHost
+    type: string
+  - name: azureKeyVaultDbUserSecretName
+    type: string
+  - name: azureKeyVaultDbPasswordSecretName
+    type: string
+  - name: redisHost
+    type: string
+  - name: redisPort
+    type: string
+  - name: redisPasswordSecretName
+    type: string
+  - name: host
+    type: string
+  - name: clusterIssuerName
+    type: string
+  - name: secretStoreName
+    type: string
+modules:
+  - name: github.com/qmonus/official-cloud-native-adapters-internal
+    revision: c6b220c0fb5851b7da091b973c5e4399b34c15f8
+designPatterns:
+  - pattern: qmonus.net/adapter/official/pipeline/build:buildkitAzure
+  - pattern: qmonus.net/adapter/official/pipeline/deploy:simpleDeployByPulumiYaml
+    pipelineParams:
+      useBastionSshCred: true
+      useCred:
+        kubernetes: true
+        azure: true
+  - pattern: qmonus.net/adapter/official/pulumi/provider:azure
+  - pattern: qmonus.net/adapter/official/pulumi/provider:mysql
+  - pattern: qmonus.net/adapter/official/pulumi/provider:azureclassic
+  - pattern: qmonus.net/adapter/official/pulumi/azure/sample:azureApiBackendApplicationAdapterForAzureResources
+    params:
+      appName: $(params.appName)
+      azureLocationName: $(params.azureLocationName)
+      azureDnsZoneName: $(params.azureDnsZoneName)
+      azureKeyVaultDbPasswordSecretName: $(params.azureKeyVaultDbPasswordSecretName)
+      azureKeyVaultDbUserSecretName: $(params.azureKeyVaultDbUserSecretName)
+      azureTenantId: $(params.azureTenantId)
+      mysqlCreateUserName: $(params.mysqlCreateUserName)
+      azureKeyVaultKeyContainerName: $(params.azureKeyVaultKeyContainerName)
+      mysqlCreateDbName: $(params.mysqlCreateDbName)
+      azureDnsARecordName: $(params.azureDnsARecordName)
+      azureSubscriptionId: $(params.azureSubscriptionId)
+      azureStaticIpAddress: $(params.azureStaticIpAddress)
+      azureResourceGroupName: $(params.azureResourceGroupName)
+  - pattern: qmonus.net/adapter/official/pulumi/provider:kubernetes
+  - pattern: qmonus.net/adapter/official/pulumi/azure/sample:azureApiBackendApplicationAdapterForKubernetesResources
+    params:
+      appName: $(params.appName)
+      azureKeyVaultDbUserSecretName: $(params.azureKeyVaultDbUserSecretName)
+      dbHost: $(params.dbHost)
+      azureKeyVaultDbPasswordSecretName: $(params.azureKeyVaultDbPasswordSecretName)
+      port: $(params.port)
+      redisPort: $(params.redisPort)
+      secretStoreName: $(params.secretStoreName)
+      redisPasswordSecretName: $(params.redisPasswordSecretName)
+      k8sNamespace: $(params.k8sNamespace)
+      clusterIssuerName: $(params.clusterIssuerName)
+      imageName: $(params.imageName)
+      host: $(params.host)
+      redisHost: $(params.redisHost)
