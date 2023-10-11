@@ -55,48 +55,48 @@ designPatterns:
       redisHost: $(params.redisHost)
   - pattern: qmonus.net/adapter/official/pipeline/utils/pulumi:refer
     pipelineParams:
-      options:
+      jqQueries:
         - query:
-            selector: '.type == "azure-native:containerregistry:Registry"'
+            selector: .type == "azure-native:containerregistry:Registry"
             path: .outputs.loginServer
           name: ContainerRegistry
         - query:
-            selector: '.type == "azure-native:containerregistry:Registry"'
+            selector: .type == "azure-native:containerregistry:Registry"
             path: .outputs.loginServer
           name: ImageRegistryPath
         - query:
-            selector: '.type == "kubernetes:cert-manager.io/v1:ClusterIssuer"'
+            selector: .type == "kubernetes:cert-manager.io/v1:ClusterIssuer"
             path: .outputs.spec.acme.solvers[0].dns01.azureDNS.subscriptionID
           name: AzureSubscriptionId
         - query:
-            selector: '.type == "azure-native:resources:ResourceGroup"'
+            selector: .type == "azure-native:resources:ResourceGroup"
             path: .outputs.name
           name: AzureResourceGroupName
         - query:
-            selector: '.type == "azure-native:network:Zone"'
+            selector: .type == "azure-native:network:Zone"
             path: .outputs.name
           name: AzureDnsZoneName
         - query:
-            selector: '.type == "azure-native:network:PublicIPAddress"'
+            selector: .type == "azure-native:network:PublicIPAddress"
             path: .outputs.ipAddress
           name: AzureStaticIpAddress
         - query:
-            selector: '.type == "azure-native:keyvault:Vault" and (.urn | (type == "string" and endswith("azure-native:keyvault:Vault::keyVault")))'
+            selector: .type == "azure-native:keyvault:Vault" and (.urn | (type == "string" and endswith("azure-native:keyvault:Vault::keyVault")))
             path: .outputs.name
           name: AzureKeyVaultKeyContainerName
         - query:
-            selector: '.type == "kubernetes:cert-manager.io/v1:ClusterIssuer"'
+            selector: .type == "kubernetes:cert-manager.io/v1:ClusterIssuer"
             path: .outputs.metadata.name
           name: ClusterIssuerName
         - query:
-            selector: '.type == "azure:mysql/flexibleServer:FlexibleServer"'
+            selector: .type == "azure:mysql/flexibleServer:FlexibleServer"
             path: .outputs.fqdn
           name: DbHost
         - query:
-            selector: '.type == "azure:redis/cache:Cache"'
+            selector: .type == "azure:redis/cache:Cache"
             path: .outputs.hostname
           name: RedisHost
         - query:
-            selector: '.type == "azure-native:keyvault:Secret" and (.urn | (type == "string" and endswith("azure-native:keyvault:Secret::redisPrimaryKeySecret")))'
+            selector: .type == "azure-native:keyvault:Secret" and (.urn | (type == "string" and endswith("azure-native:keyvault:Secret::redisPrimaryKeySecret")))
             path: .outputs.name
           name: RedisPasswordSecretName
