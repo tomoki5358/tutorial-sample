@@ -55,7 +55,7 @@ designPatterns:
       redisHost: $(params.redisHost)
   - pattern: qmonus.net/adapter/official/pipeline/utils/pulumi:refer
     pipelineParams:
-      jqQueries:
+      options:
         - query:
             selector: '.type == "azure-native:containerregistry:Registry"'
             path: .outputs.loginServer
