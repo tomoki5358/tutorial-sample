@@ -13,7 +13,7 @@ params:
     type: array
 modules:
   - name: github.com/qmonus/official-cloud-native-adapters-internal
-    revision: main
+    revision: VSDEV-4548-echo-n
 designPatterns:
   - pattern: qmonus.net/adapter/official/adapters/azure/container/kubernetes/apiBackend/sharedInfrastructure
     params:

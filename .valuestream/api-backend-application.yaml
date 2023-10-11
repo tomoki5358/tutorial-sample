@@ -33,7 +33,7 @@ params:
     type: string
 modules:
   - name: github.com/qmonus/official-cloud-native-adapters-internal
-    revision: VSDEV-4548-params-ref-adapter
+    revision: VSDEV-4548-echo-n
 designPatterns:
   - pattern: qmonus.net/adapter/official/adapters/azure/container/kubernetes/apiBackend
     params:
@@ -55,7 +55,7 @@ designPatterns:
       redisHost: $(params.redisHost)
   - pattern: qmonus.net/adapter/official/pipeline/utils/pulumi:refer
     pipelineParams:
-      options:
+      jqQueries:
         - query:
             selector: '.type == "azure-native:containerregistry:Registry"'
             path: .outputs.loginServer
