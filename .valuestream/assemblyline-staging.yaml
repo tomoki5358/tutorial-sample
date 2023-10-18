@@ -1,7 +1,7 @@
 apiVersion: vs.axis-dev.io/v1
 kind: AssemblyLine
 metadata:
-  name: staging-deploy-azure
+  name: nginx-demo-ogawa-azure
 spec:
   params:
     - name: gitRevision
@@ -11,10 +11,10 @@ spec:
   stages:
     - name: deploy
       spec:
-        pipeline: nginx-demo-azure-deploy
+        pipeline: nginx-demo-ogawa-deploy
         deployment:
-          app: nginx-demo-azure
-          name: staging
+          app: nginx-demo-ogawa
+          name: stating-nginx
         params:
           - name: gitRevision
             value: $(inputs.gitRevision)
@@ -22,10 +22,10 @@ spec:
             value: $(inputs.imageName)
     - name: resolve-ip-address
       spec:
-        pipeline: nginx-demo-azure-resolve-ip-address-after-deploy
+        pipeline: nginx-demo-ogawa-resolve-ip-address-after-deploy
         deployment:
-          app: nginx-demo-azure
-          name: staging
+          app: nginx-demo-ogawa
+          name: stating-nginx
       runAfter:
         - deploy
   results:
