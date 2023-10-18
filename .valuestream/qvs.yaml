@@ -5,8 +5,8 @@ params:
     type: string
 
 modules:
-  - name: github.com/qmonus/official-cloud-native-adapters
-    revision: v0.11.1
+  - name: github.com/qmonus/official-cloud-native-adapters-internal
+    revision: ogawa-sandbox
 
 designPatterns:
   - pattern: qmonus.net/adapter/official/kubernetes/deployment/simple
