@@ -4,7 +4,6 @@ params:
   - name: imageName
     type: string
 
-
 modules:
   - name: github.com/qmonus/official-cloud-native-adapters
     revision: v0.20.0
